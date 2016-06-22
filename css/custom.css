@@ -1,0 +1,92 @@
+/*Jumbotron Parallax effect*/
+.navbar{
+    margin-bottom: 0px;
+}
+.navbar-nav{
+    text-align: center
+}
+.jumbotron {
+    height: 375px;
+    color: white;
+    text-shadow: #444 0 1px 1px;
+    padding-top: 10%;
+    background: url('../images/RLbanner.jpg') no-repeat center center;
+    background-size:cover;
+}
+.jumbotron h1,
+.jumbotron .h1 {
+    color: white;
+}
+.data-holder{
+    margin: 0 auto;
+    text-align: center;
+    padding: 28px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16),
+        0 3px 6px rgba(0,0,0,0.23);
+    margin-bottom: 30px;
+}
+
+/*Tables*/
+.leaderboardTable
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    margin: 15px auto;
+    width: 300px;
+    text-align: left;
+    border-collapse: collapse;
+}
+.leaderboardTable th
+{
+    padding: 8px 2px;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 2px solid #6678b1;
+    border-right: 50px solid #fff;
+    border-left: 50px solid #fff;
+    color: #039;
+}
+.leaderboardTable td
+{
+    padding: 12px 2px 0px 2px;
+    border-right: 30px solid #fff;
+    border-left: 30px solid #fff;
+    color: #669;
+    text-align: center;
+}
+
+.wrapper{
+    padding:25px;
+    margin-right:5%;
+    margin-left:5%;
+
+    margin-bottom: 50px;
+}
+#footer{
+    background-color:#444;
+    text-align: center;
+}
+
+
+@media(max-width:767px){
+    .jumbotron{
+        height:250px;
+        padding-top:12%;
+    }
+    .jumbotron h1{
+        font-size: 25px;
+    }
+    .jumbotron p {
+        font-size: 16px;
+    }
+    .small-button{
+        padding:3px 11px;
+        font-size:12px;
+    }
+}
+@media(max-width:550px){
+    .jumbotron{
+        padding-top:16%;
+    }
+}

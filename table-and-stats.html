@@ -1,0 +1,177 @@
+<html>
+
+<head>
+    <title>Rocket Report</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+    <link rel="apple-touch-icon" href="/your-custom-icon.png" />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!--    Firebase-->
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+
+    <!-- custom stylesheet -->
+    <!--    <link rel="stylesheet" type="text/css" href="css/darkly.css">-->
+    <!--    <link rel="stylesheet" type="text/css" href="css/flatly.css">-->
+    <link rel="stylesheet" type="text/css" href="css/paper.css">
+
+    <!-- mystyles -->
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+
+<body>
+
+    <!-- NEED TO SIMPLIFY NAV WITHOUT BREAKING IT ARGGGHH  -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./index.html">Rocket Report</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./scoreReport.html">Report Scores</a></li>
+                    <li class="active"><a href="./table-and-stats.html">Table & Stats</a></li>
+
+                    <li role="separator " class="divider "></li>
+                </ul>
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <!--    <div class="bg ">-->
+    <div class="jumbotron text-center ">
+        <h1>Report Scores here!</h1>
+        <p>Come here to report your scores</p>
+        <p><a class="btn btn-default small-button" href="http://goo.gl/forms/O7MBjHdaCu" role="button ">to form...</a></p>
+        <!--        </div>-->
+    </div>
+    <div class="container wrapper">
+        <div class="row">
+
+
+            <div class="col-md-5 data-holder">
+                <div class="example-base example-leaderboard l-demo-container">
+                    <h4 class="leaderboardHeader">Top Scorers</h4>
+                       <table class="leaderboardTable" id="goalsTable">
+                        <tr>
+                            <th>Player</th>
+                            <th>Goals</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-1"></div>
+
+
+            <div class="col-md-5 data-holder">
+                <div class="example-base example-leaderboard l-demo-container">
+                    <h4 class="leaderboardHeader">Top Assists</h4>
+                       <table class="leaderboardTable" id="leaderboardTable" >
+                        <tr>
+                            <th>Player</th>
+                            <th>Assists</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-5 data-holder">
+                <p>boop</p>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 data-holder">
+                <p>boop</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer ">
+        <div class="container ">
+            <p class="text-muted ">
+                This site is maintained by Reese Gallagher and is hosted on <a href="spacegoat.github.com ">github.com</a>
+            </p>
+        </div>
+    </div>
+    
+    
+    <script>
+        var LEADERBOARD_SIZE = 5;
+
+        // Create our Firebase reference
+        var scoreListRef = new Firebase('https://dazzling-heat-3275.firebaseio.com//playersList');
+
+        // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
+        var htmlForPath = {};
+
+        // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
+        function handleScoreAdded(scoreSnapshot, prevScoreName) {
+            var newScoreRow = $("<tr/>");
+            newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.key())));
+            newScoreRow.append($("<td/>").text(scoreSnapshot.val().stats.goals));
+
+            // Store a reference to the table row so we can get it again later.
+            htmlForPath[scoreSnapshot.key()] = newScoreRow;
+
+            // Insert the new score in the appropriate place in the table.
+            if (prevScoreName === null) {
+                $("#goalsTable").append(newScoreRow);
+            } else {
+                var lowerScoreRow = htmlForPath[prevScoreName];
+                lowerScoreRow.before(newScoreRow);
+            }
+        }
+
+        // Helper function to handle a score object being removed; just removes the corresponding table row.
+        function handleScoreRemoved(scoreSnapshot) {
+            var removedScoreRow = htmlForPath[scoreSnapshot.key()];
+            removedScoreRow.remove();
+            delete htmlForPath[scoreSnapshot.key()];
+        }
+
+        // Create a view to only receive callbacks for the last LEADERBOARD_SIZE scores
+        var scoreListView = scoreListRef.limitToLast(LEADERBOARD_SIZE);
+
+        // Add a callback to handle when a new score is added.
+        scoreListRef.orderByChild("stats/goals").on('child_added', function(newScoreSnapshot, prevScoreName) {
+            handleScoreAdded(newScoreSnapshot, prevScoreName);
+        });
+
+        // Add a callback to handle when a score is removed
+        scoreListRef.orderByChild("stats/goals").on('child_removed', function(oldScoreSnapshot) {
+            handleScoreRemoved(oldScoreSnapshot);
+        });
+
+        // Add a callback to handle when a score changes or moves positions.
+        var changedCallback = function(scoreSnapshot, prevScoreName) {
+            handleScoreRemoved(scoreSnapshot);
+            handleScoreAdded(scoreSnapshot, prevScoreName);
+        };
+        scoreListRef.orderByChild("stats/goals").on('child_moved', changedCallback);
+        scoreListRef.orderByChild("stats/goals").on('child_changed', changedCallback);
+
+        // When the user presses enter on scoreInput, add the score, and update the highest score.
+        
+
+    </script>
+
+
+</body>
+
+</html>

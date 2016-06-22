@@ -1,0 +1,424 @@
+<html>
+
+<head>
+    <title>Score Report</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+    <link rel="apple-touch-icon" href="/your-custom-icon.png" />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!--    Firebase-->
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+
+    <!-- custom stylesheet -->
+    <!--    <link rel="stylesheet" type="text/css" href="css/darkly.css">-->
+    <!--    <link rel="stylesheet" type="text/css" href="css/flatly.css">-->
+    <link rel="stylesheet" type="text/css" href="css/paper.css">
+    <!-- mystyles -->
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+
+<body>
+
+    <!-- NEED TO SIMPLIFY NAV WITHOUT BREAKING IT ARGGGHH  -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./index.html">Rocket Report</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./scoreReport.html">Report Scores</a></li>
+                    <li><a href="./table-and-stats.html">Table & Stats</a></li>
+
+                    <li role="separator " class="divider "></li>
+                </ul>
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <!--    <div class="bg ">-->
+    <div class="jumbotron text-center ">
+        <h1>Report Scores here!</h1>
+        <p>Come here to report your scores</p>
+        <p><a class="btn btn-default small-button" href="http://goo.gl/forms/O7MBjHdaCu" role="button ">to form...</a></p>
+        <!--        </div>-->
+    </div>
+    <div class="container wrapper">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h3>Report Scores Here</h3>
+
+                <form>
+                    <div class="form-group">
+                        <label for="gameweek">Gameweek</label>
+                        <select class="form-control" id="gameweek">
+                            <option value="" disabled selected>What gameweek is it?</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="user">Who are you?</label>
+                        <select class="form-control" id="user" required>
+                            <option value="" disabled selected>Pick your name.</option>
+                            <option>Reese</option>
+                            <option>Chase</option>
+                            <option>Cade</option>
+                            <option>Nick</option>
+                            <option>Ian</option>
+                            <option>Kati</option>
+                            <option>Jacob</option>
+                            <option value="" disabled>If your name isn't here let Reese know.</option>
+                        </select>
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Who was your teammate?</label>
+                        <select class="form-control" id="teammate">
+                            <option value="" disabled selected>Be honest...</option>
+                            <option>Reese</option>
+                            <option>Chase</option>
+                            <option>Cade</option>
+                            <option>Nick</option>
+                            <option>Ian</option>
+                            <option>Kati</option>
+                        </select>
+                    </div>
+-->
+                    <div class="form-group">
+                        <label for="opponent1">Who was your first opponent?</label>
+                        <select class="form-control" id="opponent1">
+                            <option value="" disabled selected>Pick their name!</option>
+                            <option>Reese</option>
+                            <option>Chase</option>
+                            <option>Cade</option>
+                            <option>Nick</option>
+                            <option>Ian</option>
+                            <option>Kati</option>
+                        </select>
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Who was your other opponent?</label>
+                        <select class="form-control" id="opponent2">
+                            <option value="" disabled selected>And the last one...</option>
+                            <option>Reese</option>
+                            <option>Chase</option>
+                            <option>Cade</option>
+                            <option>Nick</option>
+                            <option>Ian</option>
+                            <option>Kati</option>
+                        </select>
+                    </div>
+-->
+                    <div class="form-group">
+                        <label for="result">Did you win or lose?</label>
+                        <select class="form-control" id="result" required>
+                            <option value="" disabled selected>Win / Loss</option>
+                            <option>Win</option>
+                            <option>Loss</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mvp">Were you the MVP?</label>
+                        <select class="form-control" id="mvp">
+                            <option value="" disabled selected>Y / N</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="goals">How many goals did you score?</label>
+                        <select class="form-control" id="goals">
+                            <option value="" disabled selected>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assists">How many assists did you make?</label>
+                        <select class="form-control" id="assists">
+                            <option value="" disabled selected>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="saves">How many saves did you have?</label>
+                        <select class="form-control" id="saves">
+                            <option value="" disabled selected>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                    <button type="button" href="./thanks-for-reporting.html" class="btn btn-default" id="submitButton">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer ">
+        <div class="container ">
+            <p class="text-muted" style="text-align:center;">
+                This site is maintained by Reese Gallagher and is hosted on <a href="spacegoats.github.com">github.com</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Create our Firebase reference
+        var playersListRef = new Firebase('https://dazzling-heat-3275.firebaseio.com//playersList');
+
+        // Keep a mapping of firebase locations to HTML elements, so we can move/remove elements as necessary.
+        var htmlForPath = {};
+
+        // When the user presses enter on scoreInput, add the score, and update the highest score.
+        $("#submitButton").click(function() {
+            
+            // get all values from form
+            var gameweek = $("#gameweek").val();
+            var user = $("#user").val();
+            var goals = Number($("#goals").val());
+            var assists = Number($("#assists").val());
+            var saves = Number($("#saves").val());
+            var result = $("#result").val();
+            var wins = 0;
+            var losses = 0;
+            var points = 0;
+            var mvp = 0;
+
+            // check for win/loss and allocate points
+            // if needed
+            if (result == "Win") {
+                wins = 1;
+                points = 3;
+                losses = 0;
+            } else if (result == "Loss") {
+                losses = 1;
+                wins = 0;
+            } else {
+                // ERROR
+            }
+            
+            // checks if user was mvp and allocates incrememt
+            if ($("#mvp").val() == "Yes") {
+                mvp = 1;
+            }
+
+            var userExists = go(user);
+
+            console.log(userExists);
+            console.log("this is " + checkIfUserExists(user));
+
+            playersListRef.child(user).once('value', function(snapshot) {
+                var exists = (snapshot.val() !== null);
+
+                if (exists === true) {
+                    var playerRef = playersListRef.child(user);
+
+                    // Attach an asynchronous callback to read the data at our posts reference
+                    playerRef.once("value", function(snapshot) {
+
+                        var retrievedPlayer = snapshot.val();
+                        console.log("this is player before update" + retrievedPlayer); // "You have scored: " + snapshot.val().stats.goals
+
+                        // add records up
+                        retrievedPlayer.record.gamesPlayed++;
+                        retrievedPlayer.record.wins += wins;
+                        retrievedPlayer.record.losses += losses;
+                        retrievedPlayer.record.points += points;
+
+                        // add stats
+                        retrievedPlayer.stats.avgPoints += points;
+                        retrievedPlayer.stats.goals += goals;
+                        retrievedPlayer.stats.assists += assists;
+                        retrievedPlayer.stats.saves += saves;
+                        retrievedPlayer.stats.mvps += mvp;
+
+                        console.log("this is player after update" + retrievedPlayer);
+                        playerRef.set(retrievedPlayer);
+
+                        // Should be able to wrap all of this into a function as long as 
+                        // i pass object into function or keep referencs local inside function
+                        // both should be doable
+
+                    });
+
+                } else {
+
+                    var newPlayer = {
+                        record: {
+                            gamesPlayed: 1,
+                            wins: wins,
+                            losses: losses,
+                            points: points
+                        },
+                        stats: {
+                            avgPoints: points,
+                            goals: goals,
+                            assists: assists,
+                            saves: saves,
+                            mvps: mvp
+                        }
+                    }
+
+                    var playerRef = playersListRef.child(user);
+                    playerRef.set(newPlayer);
+                    console.log(newPlayer);
+                }
+            });
+        });
+
+        /* function to check if player exists and decide next task accordingly */
+
+        /* gets new values from form  */
+        function getFormValues() {
+            var user = $("#user").val();
+
+            var gameweek = $("#gameweek").val();
+            var result = $("#result").val();
+            var goals = Number($("#goals").val());
+            var assists = Number($("#assists").val());
+            var saves = Number($("#saves").val());
+            var points = Number($("#points").val());
+            var mvp = 0;
+            var wins = 0;
+            var losses = 0;
+
+            // give increment to appropriate result
+            if (result == "Win") {
+                wins = 1;
+                points += 3;
+            } else {
+                losses = 1;
+            }
+        }
+
+        /* trying to get the data from a player object */
+        function fetchPlayer(user) {
+            var ref = new Firebase("https://dazzling-heat-3275.firebaseio.com//playersList");
+
+            var existingPlayer = {
+                record: {
+                    gamesPlayed: "",
+                    wins: "",
+                    losses: "",
+                    points: ""
+                },
+                stats: {
+                    avgPoints: "",
+                    goals: "",
+                    assists: "",
+                    saves: "",
+                    mvps: ""
+                }
+
+                // possibly returning existingPlayer could work
+                // this IS a function that will need repeating 
+                // applicable to any time a player is needed to be called 
+            }
+
+            // Retrieve values of player
+            ref.on("value", function(snapshot) {
+                var player = snapshot.val();
+                console.log("Author: " + player.author);
+                console.log("Title: " + player.title);
+            });
+        }
+
+        // function to add new player only 
+        function addNewPlayer(user) {
+            var player = {
+                record: {
+                    gamesPlayed: "",
+                    wins: "",
+                    losses: "",
+                    points: ""
+                },
+                stats: {
+                    avgPoints: "",
+                    goals: "",
+                    assists: "",
+                    saves: "",
+                    mvps: ""
+                }
+            }
+            var playerRef = playersListRef.child(user);
+            playerRef.set(player);
+        }
+
+        /* From Firebase docs for checking for existance */
+        function go(user) {
+            checkIfUserExists(user);
+        }
+
+        var USERS_LOCATION = 'https://dazzling-heat-3275.firebaseio.com//playersList';
+
+        function userExistsCallback(user, exists) {
+            if (exists) {
+                console.log('user ' + user + ' exists!');
+                var confirm = true;
+                return true;
+            } else {
+                console.log('user ' + user + ' does not exist!');
+                return false;
+            }
+        }
+
+        // Tests to see if /users/<userId> has any data. 
+        function checkIfUserExists(user) {
+            var usersRef = new Firebase(USERS_LOCATION);
+            usersRef.child(user).once('value', function(snapshot) {
+                var exists = (snapshot.val() !== null);
+                return userExistsCallback(user, exists);
+            });
+        }
+
+    </script>
+
+
+</body>
+
+</html>

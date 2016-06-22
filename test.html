@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<head>
+    <title>
+        </myTestPlayground>
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="ninja-slider.css" rel="stylesheet" />
+    <link rel="stylesheet" href="prism.css">
+
+    <script src="prism.js"></script>
+    <link href="https://bootswatch.com/cosmo/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Issues</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="body-copy">
+                    <h3>This is a fake story.</h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, quos, expedita illo fuga aliquam voluptate nisi aspernatur ratione explicabo minima excepturi harum maiores autem cupiditate voluptates libero aperiam hic corporis!</p>
+                    <p>Voluptates velit iure non quibusdam natus! Minima doloribus porro sequi assumenda repellendus possimus facilis doloremque labore temporibus fuga eaque, voluptates, voluptatum fugiat unde? Eius amet iusto, quasi deserunt hic quas.</p>
+                    <p>Laudantium iste odit assumenda soluta, reiciendis libero, cum ipsam fugit fugiat, reprehenderit ullam nisi itaque odio architecto neque at accusamus et placeat quis, alias quo sed quibusdam vitae ducimus. Officia!</p>
+                    <blockquote>And then there were three. Never to return again...</blockquote>
+                    <p>Exercitationem modi voluptatum odio nesciunt quidem aperiam assumenda, quas at laudantium autem placeat repudiandae perspiciatis cupiditate quo neque ipsa. Minus accusamus ea laudantium sint pariatur dolorum suscipit asperiores tenetur unde.</p>
+                    <p>Dicta minima, numquam itaque deleniti quae magni nihil. Porro nesciunt impedit natus in ullam accusamus, non hic, cum laborum maxime cupiditate repellendus alias, id explicabo rerum optio autem amet dolorum!</p>
+                    <p>Accusamus tempore eum tempora ex, illo aut at vero reprehenderit aliquid porro. Commodi, deserunt. Aliquid cum expedita rerum autem porro molestias sit delectus! Ullam nobis corrupti, deleniti aperiam est, ratione?</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="generic-list">
+                    <li>Lorem ipsum dolor sit.</li>
+                    <li>Cumque repudiandae impedit distinctio.</li>
+                    <li>Totam minus odio, id.</li>
+                    <li>Reiciendis blanditiis perferendis eum.</li>
+                    <li>Quo accusamus, sed ea?</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row section">
+            <div class="col-md-12">
+                <h3 class="section-title">CSS Spinning Square Demo</h3>
+                <div class="spin square"></div>
+                <div class="description">
+                    <h3>This is a spinning square that turns into a circle.</h3>
+                    <p>This square spins by using only keyframes in CSS.</p>
+
+<pre><code class="language-css">
+    .square {
+        width: 100px;
+        height: 100px;
+        background-color: #333;
+        margin: 45px auto;
+    }
+    .spin {
+        animation: spinning 2.1s;
+        animation-iteration-count: infinite;
+        animation-direction: infinite;
+        animation-timing-function: ease;
+    }
+    @keyframes spinning {
+        from {
+            transform: rotate(0deg);
+            border-radius: 2px;
+        }
+        50% {
+            transform: rotate(180deg);
+            border-radius: 50px;
+        }
+        to {
+            transform: rotate(0deg);
+            border-radius: 2px;
+        }
+    }
+    </code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="row section">
+            <div class="col-md-12">
+                <h3 class="section-title">CSS Stretching Square Demo</h3>
+                <div class=" stretch square"></div>
+                <div class="description">
+                    <h3>This stretches a square into a rectangle.</h3>
+                    <p>This square stretches into a rectangle using only keyframes in CSS.</p>
+
+<pre><code class="language-css">
+    .square {
+        width: 100px;
+        height: 100px;
+        background-color: #333;
+        margin: 45px auto;
+    }
+    .stretch {
+        animation: stretch 2.1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease;
+    }
+    @keyframes stretch {
+        0%,
+        100% {
+            transform: scale(1, 1);
+        }
+        50% {
+            transform: scale(5, 0.05);
+        }
+    }
+    </code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="row section">
+            <div class="col-md-12">
+                <h3 class="section-title">Hamburger to Arrow Transition</h3>
+                <div class="menu-container">
+                    <a href="#" id="main-menu__open" class="main-menu__toggle">
+                        <div class="menu-icon">
+                            <div class="main-menu__icon-item main-menu__open_one"></div>
+                            <div class="main-menu__icon-item main-menu__open_two"></div>
+                            <div class="main-menu__icon-item main-menu__open_three"></div>
+                        </div>
+                </div>
+                </a>
+                <div class="description">
+                    <h3>Hamburger menu button turns into an arrow.</h3>
+                    <p>Changes shape with fairly basic css transitions and translations. </p>
+
+<pre><code class="language-css">
+    #main-menu__open .main-menu__icon-item {
+        background: #303133;
+        width: 100px;
+        height: 2px;
+        margin-bottom: 27px;
+        transform-origin: center;
+        overflow: visible;
+        position: relative;
+        z-index: 1;
+        display:block;
+    }
+
+    #main-menu__open .main-menu__open_one,
+    #main-menu__open .main-menu__open_three {
+        -webkit-transition: all .35s cubic-bezier(.1, .885, .32, 1.2);
+        -ms-transition: all .35s cubic-bezier(.1, .885, .32, 1.2);
+        transition: all .35s cubic-bezier(.1, .885, .32, 1.2);
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    #main-menu__open .main-menu__open_two {
+        -webkit-transition: all .2s cubic-bezier(.1, .885, .32, 1.2);
+        -ms-transition: all .2s cubic-bezier(.1, .885, .32, 1.2);
+        transition: all .2s cubic-bezier(.1, .885, .32, 1.2);
+    }
+
+    #main-menu__open:active .main-menu__open_one,
+    #main-menu__open:hover .main-menu__open_one {
+        -webkit-transform: rotate(-45deg)scaleX(.8)translateX(-12px)translateY(-10px);
+        -ms-transform: rotate(-45deg)scaleX(.8)translateX(-12px)translateY(-10px);
+        transform: rotate(-45deg)scaleX(.8)translateX(-12px)translateY(-10px);
+    }
+
+    #main-menu__open:active .main-menu__open_two,
+    #main-menu__open:hover .main-menu__open_two {
+        -webkit-transform: translateX(7px);
+        -ms-transform: translateX(7px);
+        transform: translateX(7px);
+    }
+
+    #main-menu__open:active .main-menu__open_three,
+    #main-menu__open:hover .main-menu__open_three {
+        -webkit-transform: rotate(45deg)scaleX(.8)translateX(-12px)translateY(10px);
+        -ms-transform: rotate(45deg)scaleX(.8)translateX(-12px)translateY(10px);
+        transform: rotate(45deg)scaleX(.8)translateX(-12px)translateY(10px);
+    }
+    </code></pre>
+               
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+    </div>
+
+
+
+
+    <div class="footer">
+        <div class="col-md-4">
+            <p>First part of a footer</p>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+    </div>
+    </div>
+
+</body>
+
+</html>
